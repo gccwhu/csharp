@@ -8,39 +8,37 @@ namespace AiPrime
 {
     class Program
     {
-        static int[,] solution(int n)
+        static bool[] solution(int num)
         {
-            int [,] prime=new int [2,n-1];
-            for (int i = 0; i < n-1; i++)
+            if(num< 2)
             {
-                prime[0,i]= i + 2;    
+                throw new ArgumentException("输入数字必须大于一！");
+            }   
+            bool [] prime=new bool [num+1];//prime[i]为true表示i为素数  
+            //初始化数组 
+            for (int i = 2; i < prime.Length; i++)
+            {
+                prime[i]= true ;    
             }
-            for(int i = 0; i < n - 1; i++)
+            for(int i = 2; i < prime.Length; i++)
             {
-                if (prime[1, i] == 1)
+                if (!prime[i])
+                    continue;
+                for (int j = i *i; j < prime.Length; j++)
                 {
-                    continue;   
-                }
-                else
-                {
-                    for (int j = i+1; j < n - 1; j++)
-                    {
-                        if (prime[0, j] % prime[0, i] == 0)
-                        {
-                            prime[1, j] = 1;
-                        }
-                    }
+                    if (j%  i == 0)
+                        prime[j] = false;
                 }
             }
             return prime;   
         }   
         static void Main(string[] args)
         {
-            int[,]result= solution(100);  
-            for(int i=0;i<99;i++)
+            bool []result= solution(100);  
+            for(int i=2;i<result.Length;i++)
             {
-                if(result[1,i]==0)
-                    Console.WriteLine(result[0,i]);
+                if(result[i])
+                    Console.WriteLine(i);
             }   
         }
     }

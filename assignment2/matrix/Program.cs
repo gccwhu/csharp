@@ -10,45 +10,21 @@ namespace matrix
     {
         static bool solution(int[,] matrix)
         {
-            int rows = matrix.GetLength(0)-1;
-            int cols = matrix.GetLength(1)-1;
-            for (int i = 0; i < cols; i++)
+            if(matrix == null)
+                throw new ArgumentException("矩阵不能为空！"); 
+            for(int i = 1; i < matrix.GetLength(0); i++)
             {
-                int j = 0,k=i;
-                while (j<rows&&k<cols)
+                for (int j = 1; j < matrix.GetLength(1); j++)
                 {
-                    if(matrix[j,k] == matrix[j + 1, k + 1]) {
-                        j++;
-                        k++;
-                    }
-                    else
-                    {
+                    if ( matrix[i, j] != matrix[i - 1, j - 1])
                         return false;
-                    }
-                }   
-
-            }
-            for (int i = 0; i < rows; i++)
-            {
-                int j = i, k = 0;
-                while (j < rows && k < cols)
-                {
-                    if (matrix[j, k] == matrix[j + 1, k + 1])
-                    {
-                        j++;
-                        k++;
-                    }
-                    else
-                    {
-                        return false;
-                    }
                 }
-            }
+            }   
             return true;
         }   
         static void Main(string[] args)
         {
-            int[,] matrix = new int[,] { { 1, 2, 3,4 }, { 5, 1, 2,3 }, { 9,5, 1, 2 } };
+            int[,] matrix = { { 1, 2, 3,4 }, { 5, 1, 2,3 }, { 9,5, 1, 2 } };
             Console.WriteLine(solution(matrix));    
         }
     }

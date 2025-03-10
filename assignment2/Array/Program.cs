@@ -10,8 +10,13 @@ namespace array
 {
     class arraySum
     {
+        //计算数组的最大值，最小值，平均值，和    
         static void solution(Array arr,out int max,out int min,out int ave,out int sum)
         {
+            if(arr==null )//异常处理
+            {
+                throw new ArgumentException("数组不能为空！");
+            }   
             max = int.MinValue; min = int.MaxValue; ave = 0; sum=0;
             foreach (int i in arr )
             {
