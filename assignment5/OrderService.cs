@@ -6,11 +6,12 @@ namespace assignment5
 {
     public class OrderService
     {
-        List<Order> OrderList = new List<Order>();
+        public List<Order> OrderList = new List<Order>();
 
         // 添加订单
         public void AddOrder(Order order)
         {
+            //隐式调用Order.Equals方法    
             if (OrderList.Contains(order))
             {
                 throw new Exception("Order already exists!");
@@ -36,9 +37,12 @@ namespace assignment5
             {
                 throw new Exception("Order does not exist!");
             }
-            existingOrder.OrderTime = order.OrderTime;
-            existingOrder.Customer = order.Customer;
-            existingOrder.OrderDetails = order.OrderDetails;
+            RemoveOrder(existingOrder);
+            AddOrder(order);    
+        }
+        public Order getOrder(string id)
+        {
+            return OrderList.FirstOrDefault(o => o.ID == id);
         }
         // 查询方法（使用LINQ）
         public IEnumerable<Order> QueryOrders(Func<Order, bool> QueryMethod) =>

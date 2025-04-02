@@ -16,12 +16,12 @@ namespace assignment5
         //÷ÿ–¥ToString∑Ω∑®
         public override string ToString()
         {
-            return $"Goods: {Goods}, Quantity: {Quantity},TotalPrice:{TotalPrice}";
+            return $"\nGoods: {Goods}, Quantity: {Quantity},TotalPrice:{TotalPrice}";
         }
 
         public override bool Equals(object obj)
         {
-            return obj is OrderDetails details &&
+            return obj is OrderDetails details &&details != null && 
                    EqualityComparer<Goods>.Default.Equals(Goods, details.Goods) &&
                    Quantity == details.Quantity;
         }

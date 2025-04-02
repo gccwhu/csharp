@@ -19,7 +19,7 @@ namespace assignment5
         }
         public override bool Equals(object obj)
         {
-            return obj is Goods goods &&
+            return obj is Goods goods && goods != null &&
                    Name == goods.Name &&
                    Price == goods.Price;
         }

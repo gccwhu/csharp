@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace assignment5
 {
-    class Program
+    class MainClass 
     {
         static void Main(string[] args)
         {
             OrderService orderService = new OrderService();
 
-            Customer customer1 = new Customer("Alice", "123 Main St", "123-4567-7890", "alice@example.com");
+            Customer customer1 = new Customer(1001,"Alice", "123 Main St", "123-4567-7890", "alice@example.com");
             Goods goods1 = new Goods("Laptop", 1000);
             Goods goods2 = new Goods("Mouse", 50);
             OrderDetails orderDetails1 = new OrderDetails(goods1, 1);
