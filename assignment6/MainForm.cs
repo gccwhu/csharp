@@ -7,8 +7,8 @@ namespace assignment6
     public partial class MainForm : Form
     {
         private OrderService orderService;
-        private BindingSource orderBindingSource = new BindingSource();
-        private BindingSource orderDetailBindingSource = new BindingSource();
+        //private BindingSource orderBindingSource = new BindingSource();
+        //private BindingSource orderDetailBindingSource = new BindingSource();
 
         private void InitializeDataBindings()
         {
@@ -65,6 +65,7 @@ namespace assignment6
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button_ModifyOrder = new System.Windows.Forms.Button();
             this.button_DeleteOrder = new System.Windows.Forms.Button();
@@ -74,9 +75,11 @@ namespace assignment6
             this.orderDetailsDataGridView = new System.Windows.Forms.DataGridView();
             this.TxtQuery = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderDetailsDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -185,6 +188,7 @@ namespace assignment6
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderDetailsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -234,5 +238,7 @@ namespace assignment6
             orderBindingSource.DataSource = orderService.OrderList;
             orderDetailBindingSource.DataSource = orderBindingSource;
         }
+
+        private BindingSource bindingSource2;
     }
 }
