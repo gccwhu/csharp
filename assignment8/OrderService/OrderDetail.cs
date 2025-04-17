@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,32 +9,39 @@ namespace OrderApp {
   /**
    **/
   public class OrderDetail {
-    [Key]
+
+    public string Id { get; set; }//主键
+
     public int Index { get; set; } //序号
 
-    public Product ProductItem { get; set; }
+    public string ProductId { get; set; }//外键
 
-    public String ProductName { get => ProductItem!=null? this.ProductItem.Name:""; }
+    public Product Product { get; set; }//导航属性，用于做关联查询
 
-    public double UnitPrice { get => ProductItem != null ? this.ProductItem.Price : 0.0; }
+    public String ProductName { get => Product!=null? this.Product.Name:""; }
 
+    public double UnitPrice { get => Product != null ? this.Product.Price : 0.0; }
+
+    public string OrderId { get; set; }//外键，不需要用Order做关联查询，所以不加导航属性
 
     public int Quantity { get; set; }
 
-    public OrderDetail() { }
+    public OrderDetail() {
+      Id = Guid.NewGuid().ToString();
+    }
 
     public OrderDetail(int index, Product goods, int quantity) {
       this.Index = index;
-      this.ProductItem = goods;
+      this.Product = goods;
       this.Quantity = quantity;
     }
 
     public double TotalPrice {
-      get => ProductItem==null?0.0: ProductItem.Price * Quantity;
+      get => Product==null?0.0: Product.Price * Quantity;
     }
 
     public override string ToString() {
-      return $"[No.:{Index},product:{ProductName},quantity:{Quantity},totalPrice:{TotalPrice}]";
+      return $"[No.:{Index},goods:{ProductName},quantity:{Quantity},totalPrice:{TotalPrice}]";
     }
 
     public override bool Equals(object obj) {
